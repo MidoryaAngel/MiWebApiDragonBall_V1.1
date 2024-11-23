@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dragon Ball API - Vue.js</title>
+    <link rel="stylesheet" href="./css/bootstrap.min.css" />
+    <link rel="stylesheet" href="./css/estilos.css" />
+</head>
+<body>
+    <header class="bg-success text-center text-white py-3">
+        <span class="h2">Dragon Ball API - Vue.js</span>
+    </header>
+
+    <section class="container-fluid text-center" id="contenedor">
+        <div class="row justify-content-center">
+            <h2 class="col-12 text-white mb-4">Personajes</h2>
+            <div 
+                v-for="persona in personas" 
+                :key="persona.id" 
+                class="col-12 col-sm-6 col-md-4 col-lg-3 my-3 d-flex justify-content-center">
+                <div class="card shadow-lg">
+                    <img 
+                        class="card-img-top" 
+                        :src="persona.image" 
+                        :alt="persona.name" />
+                    <div class="card-body bg-light">
+                        <h5 class="card-title text-primary">{{ persona.name }}</h5>
+                        <p class="card-text text-info">ID: {{ persona.id }}</p>
+                        <p class="card-text text-info">Raza: {{ persona.race }}</p>
+                        <p class="card-text text-info">Genero: {{ persona.gender }}</p>
+                        <p class="card-text text-info">Ki: {{ persona.ki }}</p>
+                        <p class="card-text text-info">Afiliación: {{ persona.affiliation }}</p>
+                        <p 
+                            v-show="persona.showDescription" 
+                            class="card-text text-info">Descripción: {{ persona.description }}
+                        </p>
+                        <button 
+                            @click="persona.showDescription = !persona.showDescription" 
+                            class="btn btn-outline-success">
+                            {{ persona.showDescription ? 'Ocultar' : 'Mostrar' }} Descripción
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-dark text-center text-white py-2">
+        <span class="h2">Frameworks de Desarrollo Web</span>
+        <h6 class="desarrollador">Angel Torres</h6>
+    </footer>
+
+    <!-- Referencias a Vue y Axios -->
+    <script src="./js/vue3.js"></script>
+    <script src="./js/axios.min.js"></script>
+    <script src="./js/funciones.js"></script>
+</body>
+</html>
